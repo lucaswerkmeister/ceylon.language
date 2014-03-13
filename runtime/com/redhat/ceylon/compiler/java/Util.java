@@ -212,6 +212,9 @@ public class Util {
     public static boolean[] 
     toBooleanArray(ceylon.language.Iterable<? extends ceylon.language.Boolean, ?> sequence,
     		boolean... initialElements){
+        if(sequence instanceof ceylon.language.List)
+            return toBooleanArray((ceylon.language.List<? extends ceylon.language.Boolean>)sequence,
+                        initialElements);
         List<ceylon.language.Boolean> list = collectIterable(sequence);
         int i=initialElements.length;
         boolean[] ret = new boolean[list.size() + i];
@@ -221,11 +224,29 @@ public class Util {
         }
         return ret;
     }
+
+    @SuppressWarnings("unchecked")
+    public static boolean[]
+    toBooleanArray(ceylon.language.List<? extends ceylon.language.Boolean> list,
+                boolean... initialElements){
+        int i=initialElements.length;
+        boolean[] ret = new boolean[(int) list.getSize() + i];
+        System.arraycopy(initialElements, 0, ret, 0, i);
+        Iterator<? extends ceylon.language.Boolean> iterator = list.iterator();
+        Object o;
+        while((o = iterator.next()) != finished_.get_()){
+            ret[i++] = ((ceylon.language.Boolean)o).booleanValue();
+        }
+        return ret;
+    }
     
     @SuppressWarnings("unchecked")
     public static byte[] 
     toByteArray(ceylon.language.Iterable<? extends ceylon.language.Integer, ?> sequence,
     		long... initialElements){
+        if(sequence instanceof ceylon.language.List)
+            return toByteArray((ceylon.language.List<? extends ceylon.language.Integer>)sequence,
+                        initialElements);
         List<ceylon.language.Integer> list = collectIterable(sequence);
         int i=initialElements.length;
         byte[] ret = new byte[i + list.size()];
@@ -235,11 +256,29 @@ public class Util {
         }
         return ret;
     }
+
+    @SuppressWarnings("unchecked")
+    public static byte[]
+    toByteArray(ceylon.language.List<? extends ceylon.language.Integer> list,
+                long... initialElements){
+        int i=initialElements.length;
+        byte[] ret = new byte[(int) list.getSize() + i];
+        System.arraycopy(initialElements, 0, ret, 0, i);
+        Iterator<? extends ceylon.language.Integer> iterator = list.iterator();
+        Object o;
+        while((o = iterator.next()) != finished_.get_()){
+            ret[i++] = (byte)((ceylon.language.Integer)o).longValue();
+        }
+        return ret;
+    }
     
     @SuppressWarnings("unchecked")
     public static short[] 
     toShortArray(ceylon.language.Iterable<? extends ceylon.language.Integer, ?> sequence,
     		long... initialElements){
+        if(sequence instanceof ceylon.language.List)
+            return toShortArray((ceylon.language.List<? extends ceylon.language.Integer>)sequence,
+                        initialElements);
         List<ceylon.language.Integer> list = collectIterable(sequence);
         int i=initialElements.length;
         short[] ret = new short[list.size() + i];
@@ -249,11 +288,29 @@ public class Util {
         }
         return ret;
     }
+
+    @SuppressWarnings("unchecked")
+    public static short[]
+    toShortArray(ceylon.language.List<? extends ceylon.language.Integer> list,
+                long... initialElements){
+        int i=initialElements.length;
+        short[] ret = new short[(int) list.getSize() + i];
+        System.arraycopy(initialElements, 0, ret, 0, i);
+        Iterator<? extends ceylon.language.Integer> iterator = list.iterator();
+        Object o;
+        while((o = iterator.next()) != finished_.get_()){
+            ret[i++] = (short)((ceylon.language.Integer)o).longValue();
+        }
+        return ret;
+    }
     
     @SuppressWarnings("unchecked")
     public static int[] 
     toIntArray(ceylon.language.Iterable<? extends ceylon.language.Integer, ?> sequence,
     		long... initialElements){
+        if(sequence instanceof ceylon.language.List)
+            return toIntArray((ceylon.language.List<? extends ceylon.language.Integer>)sequence,
+                        initialElements);
         List<ceylon.language.Integer> list = collectIterable(sequence);
         int i=initialElements.length;
         int[] ret = new int[list.size() + i];
@@ -263,11 +320,29 @@ public class Util {
         }
         return ret;
     }
+
+    @SuppressWarnings("unchecked")
+    public static int[]
+    toIntArray(ceylon.language.List<? extends ceylon.language.Integer> list,
+                long... initialElements){
+        int i=initialElements.length;
+        int[] ret = new int[(int) list.getSize() + i];
+        System.arraycopy(initialElements, 0, ret, 0, i);
+        Iterator<? extends ceylon.language.Integer> iterator = list.iterator();
+        Object o;
+        while((o = iterator.next()) != finished_.get_()){
+            ret[i++] = (int)((ceylon.language.Integer)o).longValue();
+        }
+        return ret;
+    }
     
     @SuppressWarnings("unchecked")
     public static long[] 
     toLongArray(ceylon.language.Iterable<? extends ceylon.language.Integer, ?> sequence,
     		long... initialElements){
+        if(sequence instanceof ceylon.language.List)
+            return toLongArray((ceylon.language.List<? extends ceylon.language.Integer>)sequence,
+                        initialElements);
         List<ceylon.language.Integer> list = collectIterable(sequence);
         int i=initialElements.length;
         long[] ret = new long[list.size() + i];
@@ -279,9 +354,27 @@ public class Util {
     }
 
     @SuppressWarnings("unchecked")
+    public static long[]
+    toLongArray(ceylon.language.List<? extends ceylon.language.Integer> list,
+                long... initialElements){
+        int i=initialElements.length;
+        long[] ret = new long[(int) list.getSize() + i];
+        System.arraycopy(initialElements, 0, ret, 0, i);
+        Iterator<? extends ceylon.language.Integer> iterator = list.iterator();
+        Object o;
+        while((o = iterator.next()) != finished_.get_()){
+            ret[i++] = ((ceylon.language.Integer)o).longValue();
+        }
+        return ret;
+    }
+
+    @SuppressWarnings("unchecked")
     public static float[] 
     toFloatArray(ceylon.language.Iterable<? extends ceylon.language.Float, ?> sequence, 
     		double... initialElements){
+        if(sequence instanceof ceylon.language.List)
+            return toFloatArray((ceylon.language.List<? extends ceylon.language.Float>)sequence,
+                        initialElements);
         List<ceylon.language.Float> list = collectIterable(sequence);
         int i=initialElements.length;
         float[] ret = new float[i + list.size()];
@@ -293,15 +386,48 @@ public class Util {
     }
 
     @SuppressWarnings("unchecked")
+    public static float[]
+    toFloatArray(ceylon.language.List<? extends ceylon.language.Float> list,
+                double... initialElements){
+        int i=initialElements.length;
+        float[] ret = new float[(int) list.getSize() + i];
+        System.arraycopy(initialElements, 0, ret, 0, i);
+        Iterator<? extends ceylon.language.Float> iterator = list.iterator();
+        Object o;
+        while((o = iterator.next()) != finished_.get_()){
+            ret[i++] = (float)((ceylon.language.Float)o).doubleValue();
+        }
+        return ret;
+    }
+
+    @SuppressWarnings("unchecked")
     public static double[] 
     toDoubleArray(ceylon.language.Iterable<? extends ceylon.language.Float, ?> sequence,
     		double... initialElements){
+        if(sequence instanceof ceylon.language.List)
+            return toDoubleArray((ceylon.language.List<? extends ceylon.language.Float>)sequence,
+                        initialElements);
         List<ceylon.language.Float> list = collectIterable(sequence);
         int i=initialElements.length;
         double[] ret = new double[list.size() + i];
         System.arraycopy(initialElements, 0, ret, 0, i);
         for(ceylon.language.Float e : list){
             ret[i++] = e.doubleValue();
+        }
+        return ret;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static double[]
+    toDoubleArray(ceylon.language.List<? extends ceylon.language.Float> list,
+                double... initialElements){
+        int i=initialElements.length;
+        double[] ret = new double[(int) list.getSize() + i];
+        System.arraycopy(initialElements, 0, ret, 0, i);
+        Iterator<? extends ceylon.language.Float> iterator = list.iterator();
+        Object o;
+        while((o = iterator.next()) != finished_.get_()){
+            ret[i++] = ((ceylon.language.Float)o).doubleValue();
         }
         return ret;
     }
@@ -346,6 +472,9 @@ public class Util {
     public static int[] 
 	toCodepointArray(ceylon.language.Iterable<? extends ceylon.language.Character, ?> sequence,
 			int... initialElements){
+        if(sequence instanceof ceylon.language.List)
+            return toCodepointArray((ceylon.language.List<? extends ceylon.language.Character>)sequence,
+                        initialElements);
         List<ceylon.language.Character> list = collectIterable(sequence);
         int i=initialElements.length;
         int[] ret = new int[list.size() + i];
@@ -357,15 +486,48 @@ public class Util {
     }
 
     @SuppressWarnings("unchecked")
+    public static int[]
+    toCodepointArray(ceylon.language.List<? extends ceylon.language.Character> list,
+                int... initialElements){
+        int i=initialElements.length;
+        int[] ret = new int[(int) list.getSize() + i];
+        System.arraycopy(initialElements, 0, ret, 0, i);
+        Iterator<? extends ceylon.language.Character> iterator = list.iterator();
+        Object o;
+        while((o = iterator.next()) != finished_.get_()){
+            ret[i++] = ((ceylon.language.Character)o).intValue();
+        }
+        return ret;
+    }
+
+    @SuppressWarnings("unchecked")
     public static java.lang.String[] 
     toJavaStringArray(ceylon.language.Iterable<? extends ceylon.language.String, ?> sequence,
             java.lang.String... initialElements){
+        if(sequence instanceof ceylon.language.List)
+            return toJavaStringArray((ceylon.language.List<? extends ceylon.language.String>)sequence,
+                        initialElements);
         List<ceylon.language.String> list = collectIterable(sequence);
         int i=initialElements.length;
         java.lang.String[] ret = new java.lang.String[list.size() + i];
         System.arraycopy(initialElements, 0, ret, 0, i);
         for(ceylon.language.String e : list){
             ret[i++] = e.toString();
+        }
+        return ret;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static java.lang.String[]
+    toJavaStringArray(ceylon.language.List<? extends ceylon.language.String> list,
+                java.lang.String... initialElements){
+        int i=initialElements.length;
+        java.lang.String[] ret = new java.lang.String[(int) list.getSize() + i];
+        System.arraycopy(initialElements, 0, ret, 0, i);
+        Iterator<? extends ceylon.language.String> iterator = list.iterator();
+        Object o;
+        while((o = iterator.next()) != finished_.get_()){
+            ret[i++] = ((ceylon.language.String)o).toString();
         }
         return ret;
     }
