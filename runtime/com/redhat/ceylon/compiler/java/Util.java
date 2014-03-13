@@ -391,7 +391,7 @@ public class Util {
         float[] ret = new float[list.size() + initialElements.length];
         int i=0;
         for(; i < initialElements.length; i++){
-            ret[i] = (int)initialElements[i];
+            ret[i] = (float)initialElements[i];
         }
         for(ceylon.language.Float e : list){
             ret[i++] = (float)e.doubleValue();
@@ -406,7 +406,7 @@ public class Util {
         float[] ret = new float[(int) list.getSize() + initialElements.length];
         int i=0;
         for(; i < initialElements.length; i++){
-            ret[i] = (int)initialElements[i];
+            ret[i] = (float)initialElements[i];
         }
         Iterator<? extends ceylon.language.Float> iterator = list.iterator();
         Object o;
