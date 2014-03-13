@@ -250,8 +250,8 @@ public class Util {
         List<ceylon.language.Integer> list = collectIterable(sequence);
         byte[] ret = new byte[list.size() + initialElements.length];
         int i=0;
-        for(; i < initialElements.length; i++){
-            ret[i] = (byte)initialElements[i];
+        for(;i<initialElements.length;i++){
+            ret[i] = (byte) initialElements[i];
         }
         for(ceylon.language.Integer e : list){
             ret[i++] = (byte)e.longValue();
@@ -265,8 +265,8 @@ public class Util {
                 long... initialElements){
         byte[] ret = new byte[(int) list.getSize() + initialElements.length];
         int i=0;
-        for(; i < initialElements.length; i++){
-            ret[i] = (byte)initialElements[i];
+        for(;i<initialElements.length;i++){
+            ret[i] = (byte) initialElements[i];
         }
         Iterator<? extends ceylon.language.Integer> iterator = list.iterator();
         Object o;
@@ -286,8 +286,8 @@ public class Util {
         List<ceylon.language.Integer> list = collectIterable(sequence);
         short[] ret = new short[list.size() + initialElements.length];
         int i=0;
-        for(; i < initialElements.length; i++){
-            ret[i] = (short)initialElements[i];
+        for(;i<initialElements.length;i++){
+            ret[i] = (short) initialElements[i];
         }
         for(ceylon.language.Integer e : list){
             ret[i++] = (short)e.longValue();
@@ -301,8 +301,8 @@ public class Util {
                 long... initialElements){
         short[] ret = new short[(int) list.getSize() + initialElements.length];
         int i=0;
-        for(; i < initialElements.length; i++){
-            ret[i] = (short)initialElements[i];
+        for(;i<initialElements.length;i++){
+            ret[i] = (short) initialElements[i];
         }
         Iterator<? extends ceylon.language.Integer> iterator = list.iterator();
         Object o;
@@ -322,8 +322,8 @@ public class Util {
         List<ceylon.language.Integer> list = collectIterable(sequence);
         int[] ret = new int[list.size() + initialElements.length];
         int i=0;
-        for(; i < initialElements.length; i++){
-            ret[i] = (int)initialElements[i];
+        for(;i<initialElements.length;i++){
+            ret[i] = (int) initialElements[i];
         }
         for(ceylon.language.Integer e : list){
             ret[i++] = (int)e.longValue();
@@ -337,8 +337,8 @@ public class Util {
                 long... initialElements){
         int[] ret = new int[(int) list.getSize() + initialElements.length];
         int i=0;
-        for(; i < initialElements.length; i++){
-            ret[i] = (int)initialElements[i];
+        for(;i<initialElements.length;i++){
+            ret[i] = (int) initialElements[i];
         }
         Iterator<? extends ceylon.language.Integer> iterator = list.iterator();
         Object o;
@@ -390,8 +390,8 @@ public class Util {
         List<ceylon.language.Float> list = collectIterable(sequence);
         float[] ret = new float[list.size() + initialElements.length];
         int i=0;
-        for(; i < initialElements.length; i++){
-            ret[i] = (float)initialElements[i];
+        for(;i<initialElements.length;i++){
+            ret[i] = (float) initialElements[i];
         }
         for(ceylon.language.Float e : list){
             ret[i++] = (float)e.doubleValue();
@@ -405,8 +405,8 @@ public class Util {
                 double... initialElements){
         float[] ret = new float[(int) list.getSize() + initialElements.length];
         int i=0;
-        for(; i < initialElements.length; i++){
-            ret[i] = (float)initialElements[i];
+        for(;i<initialElements.length;i++){
+            ret[i] = (float) initialElements[i];
         }
         Iterator<? extends ceylon.language.Float> iterator = list.iterator();
         Object o;
