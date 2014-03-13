@@ -537,9 +537,10 @@ public class Util {
             T[] ret, T... initialElements){
         int i=initialElements.length;
         System.arraycopy(initialElements, 0, ret, 0, i);
-        while(!sequence.getEmpty()){
-            ret[i++] = sequence.getFirst();
-            sequence = (ceylon.language.List<? extends T>)sequence.getRest();
+        Iterator<? extends T> iterator = sequence.iterator();
+        Object o;
+        while((o = iterator.next()) != finished_.get_()){
+            ret[i++] = (T)o;
         }
         return ret;
     }
