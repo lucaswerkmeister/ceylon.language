@@ -229,6 +229,8 @@ public class Util {
     public static boolean[]
     toBooleanArray(ceylon.language.List<? extends ceylon.language.Boolean> list,
             boolean... initialElements){
+        if(list == null)
+            return initialElements;
         int i=initialElements.length;
         boolean[] ret = new boolean[(int) list.getSize() + i];
         System.arraycopy(initialElements, 0, ret, 0, i);
@@ -263,15 +265,17 @@ public class Util {
     public static byte[]
     toByteArray(ceylon.language.List<? extends ceylon.language.Integer> list,
             long... initialElements){
-        byte[] ret = new byte[(int) list.getSize() + initialElements.length];
+        byte[] ret = new byte[(list == null ? 0 : (int) list.getSize()) + initialElements.length];
         int i=0;
         for(;i<initialElements.length;i++){
             ret[i] = (byte) initialElements[i];
         }
-        Iterator<? extends ceylon.language.Integer> iterator = list.iterator();
-        Object o;
-        while((o = iterator.next()) != finished_.get_()){
-            ret[i++] = (byte)((ceylon.language.Integer)o).longValue();
+        if(list != null){
+            Iterator<? extends ceylon.language.Integer> iterator = list.iterator();
+            Object o;
+            while((o = iterator.next()) != finished_.get_()){
+                ret[i++] = (byte)((ceylon.language.Integer)o).longValue();
+            }
         }
         return ret;
     }
@@ -299,15 +303,17 @@ public class Util {
     public static short[]
     toShortArray(ceylon.language.List<? extends ceylon.language.Integer> list,
             long... initialElements){
-        short[] ret = new short[(int) list.getSize() + initialElements.length];
+        short[] ret = new short[(list == null ? 0 : (int) list.getSize()) + initialElements.length];
         int i=0;
         for(;i<initialElements.length;i++){
             ret[i] = (short) initialElements[i];
         }
-        Iterator<? extends ceylon.language.Integer> iterator = list.iterator();
-        Object o;
-        while((o = iterator.next()) != finished_.get_()){
-            ret[i++] = (short)((ceylon.language.Integer)o).longValue();
+        if(list != null){
+            Iterator<? extends ceylon.language.Integer> iterator = list.iterator();
+            Object o;
+            while((o = iterator.next()) != finished_.get_()){
+                ret[i++] = (short)((ceylon.language.Integer)o).longValue();
+            }
         }
         return ret;
     }
@@ -335,15 +341,17 @@ public class Util {
     public static int[]
     toIntArray(ceylon.language.List<? extends ceylon.language.Integer> list,
             long... initialElements){
-        int[] ret = new int[(int) list.getSize() + initialElements.length];
+        int[] ret = new int[(list == null ? 0 : (int) list.getSize()) + initialElements.length];
         int i=0;
         for(;i<initialElements.length;i++){
             ret[i] = (int) initialElements[i];
         }
-        Iterator<? extends ceylon.language.Integer> iterator = list.iterator();
-        Object o;
-        while((o = iterator.next()) != finished_.get_()){
-            ret[i++] = (int)((ceylon.language.Integer)o).longValue();
+        if(list != null){
+            Iterator<? extends ceylon.language.Integer> iterator = list.iterator();
+            Object o;
+            while((o = iterator.next()) != finished_.get_()){
+                ret[i++] = (int)((ceylon.language.Integer)o).longValue();
+            }
         }
         return ret;
     }
@@ -369,6 +377,8 @@ public class Util {
     public static long[]
     toLongArray(ceylon.language.List<? extends ceylon.language.Integer> list,
             long... initialElements){
+        if(list == null)
+            return initialElements;
         int i=initialElements.length;
         long[] ret = new long[(int) list.getSize() + i];
         System.arraycopy(initialElements, 0, ret, 0, i);
@@ -403,15 +413,17 @@ public class Util {
     public static float[]
     toFloatArray(ceylon.language.List<? extends ceylon.language.Float> list,
             double... initialElements){
-        float[] ret = new float[(int) list.getSize() + initialElements.length];
+        float[] ret = new float[(list == null ? 0 : (int) list.getSize()) + initialElements.length];
         int i=0;
         for(;i<initialElements.length;i++){
             ret[i] = (float) initialElements[i];
         }
-        Iterator<? extends ceylon.language.Float> iterator = list.iterator();
-        Object o;
-        while((o = iterator.next()) != finished_.get_()){
-            ret[i++] = (float)((ceylon.language.Float)o).doubleValue();
+        if(list != null){
+            Iterator<? extends ceylon.language.Float> iterator = list.iterator();
+            Object o;
+            while((o = iterator.next()) != finished_.get_()){
+                ret[i++] = (float)((ceylon.language.Float)o).doubleValue();
+            }
         }
         return ret;
     }
@@ -437,6 +449,8 @@ public class Util {
     public static double[]
     toDoubleArray(ceylon.language.List<? extends ceylon.language.Float> list,
             double... initialElements){
+        if(list == null)
+            return initialElements;
         int i=initialElements.length;
         double[] ret = new double[(int) list.getSize() + i];
         System.arraycopy(initialElements, 0, ret, 0, i);
@@ -471,13 +485,13 @@ public class Util {
     public static char[] 
 	toCharArray(ceylon.language.List<? extends ceylon.language.Character> sequence,
 	        int... initialElements){
-        char[] ret = new char[(int) sequence.getSize() + initialElements.length];
+        char[] ret = new char[(sequence == null ? 0 : (int) sequence.getSize()) + initialElements.length];
         int i=0;
         // FIXME: this is invalid and should yield a larger array by splitting chars > 16 bits in two
         for(;i<initialElements.length;i++){
             ret[i] = (char) initialElements[i];
         }
-        while(!sequence.getEmpty()){
+        while(sequence != null && !sequence.getEmpty()){
             ret[i++] = (char) sequence.getFirst().intValue();
             sequence = (ceylon.language.List<? extends ceylon.language.Character>)sequence.getRest();
         }
@@ -505,6 +519,8 @@ public class Util {
     public static int[]
     toCodepointArray(ceylon.language.List<? extends ceylon.language.Character> list,
             int... initialElements){
+        if(list == null)
+            return initialElements;
         int i=initialElements.length;
         int[] ret = new int[(int) list.getSize() + i];
         System.arraycopy(initialElements, 0, ret, 0, i);
@@ -537,6 +553,8 @@ public class Util {
     public static java.lang.String[]
     toJavaStringArray(ceylon.language.List<? extends ceylon.language.String> list,
             java.lang.String... initialElements){
+        if(list == null)
+            return initialElements;
         int i=initialElements.length;
         java.lang.String[] ret = new java.lang.String[(int) list.getSize() + i];
         System.arraycopy(initialElements, 0, ret, 0, i);
@@ -551,6 +569,8 @@ public class Util {
     @SuppressWarnings("unchecked")
     public static <T> T[] toArray(ceylon.language.List<? extends T> sequence,
             T[] ret, T... initialElements){
+        if(sequence == null)
+            return initialElements;
         int i=initialElements.length;
         System.arraycopy(initialElements, 0, ret, 0, i);
         Iterator<? extends T> iterator = sequence.iterator();
@@ -585,6 +605,8 @@ public class Util {
     @SuppressWarnings("unchecked")
     public static <T> T[] toArray(ceylon.language.List<? extends T> list,
             java.lang.Class<T> klass, T... initialElements){
+        if(list == null)
+            return initialElements;
         int i=initialElements.length;
         T[] ret = (T[]) java.lang.reflect.Array.newInstance(klass,
                         (int)list.getSize() + i);
