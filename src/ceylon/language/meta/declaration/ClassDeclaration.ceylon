@@ -28,7 +28,7 @@ import ceylon.language.meta.model {
    
    <a name="member-sample"></a>
    ### Usage sample for member classes
-
+   
    For member classes it is a bit longer, because member classes need to be applied not only their type arguments but also
    the containing type, so you should use [[memberClassApply]] and start by giving the containing closed type:
    
@@ -37,7 +37,7 @@ import ceylon.language.meta.model {
                string => "Hello";
            }
        }
-
+       
        void test(){
            // apply the containing closed type `Outer` to the member class declaration `Outer.Inner`
            MemberClass<Outer,Outer.Inner,[]> memberClassModel = `class Outer.Inner`.memberClassApply<Outer,Outer.Inner,[]>(`Outer`);

@@ -6,7 +6,7 @@ import ceylon.language.meta{
 """The supertype of all *annotation classes*. 
    
    ### Annotation classes
- 
+   
    An *annotation class* must satisfy `Annotation`,
    [[OptionalAnnotation]],  or [[SequencedAnnotation]] and must be 
    annotated `final annotation`. For example:
@@ -14,7 +14,7 @@ import ceylon.language.meta{
        "An annotation class."
        final annotation class Example(shared String description) 
              satisfies Annotation {}
- 
+   
    Annotation classes which satisfy `Annotation` directly may be applied 
    to any program element that supports annotations (see [[Annotated]]). 
    In practice, annotation classes often satisfy [[OptionalAnnotation]] 

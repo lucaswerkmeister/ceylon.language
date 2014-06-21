@@ -29,14 +29,14 @@ import ceylon.language.meta.model {
    
    <a name="member-sample"></a>
    ### Usage sample for methods
-	
+   
    For methods it is a bit longer, because methods need to be applied not only their type arguments but also
    the containing type, so you should use [[memberApply]] and start by giving the containing closed type:
    
        class Outer(){
            shared String hello() => "Hello";
        }
-	
+    
        void test(){
            // apply the containing closed type `Outer` to the method declaration `Outer.hello`
            Method<Outer,String,[]> methodModel = `function Outer.hello`.memberApply<Outer,String,[]>(`Outer`);

@@ -8,7 +8,7 @@ import ceylon.language.meta.model {
 """A value model represents the model of a Ceylon value that you can inspect.
    
    A value model can be either a toplevel [[Value]] or a member [[Attribute]].
- """
+   """
 shared interface ValueModel<out Get=Anything, in Set=Nothing>
         satisfies Model {
 

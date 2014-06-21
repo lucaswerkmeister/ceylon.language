@@ -11,7 +11,7 @@
            // This will print: Hello
            print(val.get());
        }
- """
+    """
 shared interface Value<out Get=Anything, in Set=Nothing>
         satisfies ValueModel<Get, Set> {
 

@@ -15,7 +15,7 @@
                print("Class ``decl.name`` does not extend anything");
            }
        }
-
+   
    The following code will iterate all the class declarations in the `ceylon.language` package that
    are not abstract, anonymous or annotations, and that have no type parameters nor initialiser
    parameters. For each matching class, we will apply it to get a class model which we can then

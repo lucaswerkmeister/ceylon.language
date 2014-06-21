@@ -29,7 +29,7 @@ shared interface AnnotatedDeclaration of NestableDeclaration
        
        Alternatively, you can use the [[ceylon.language.meta::annotations]] 
        function.
-    """
+       """
     
     shared formal Annotation[] annotations<out Annotation>()
         given Annotation satisfies AnnotationType;

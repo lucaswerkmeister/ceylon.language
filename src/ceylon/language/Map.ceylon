@@ -9,7 +9,7 @@
    `in` operator:
    
        if ("lang"->"en_AU" in settings) { ... }
- 
+   
    The entries of the map may be iterated using `for`:
    
        for (key->item in settings) { ... }

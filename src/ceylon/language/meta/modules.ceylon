@@ -13,11 +13,11 @@ import ceylon.language.meta.declaration { Module }
    Here's how you would iterate all the loaded modules and print their name and version:
    
        import ceylon.language.meta { modules }
-   
+       
        for(mod in modules.list){
            print("Module: ``mod.name``/``mod.version``");
        }
- """
+   """
 shared native object modules {
     
     "Returns the list of all currently loaded modules. This may include modules that
