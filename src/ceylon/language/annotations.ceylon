@@ -152,10 +152,13 @@ shared annotation DocAnnotation doc(
     String description) => DocAnnotation(description);
 
 "The annotation class for the [[see]] annotation."
+docSection("See also", 75)
 shared final annotation class SeeAnnotation(
     "The program elements being referred to."
     shared Declaration* programElements)
-        satisfies SequencedAnnotation<SeeAnnotation,Annotated> {}
+        satisfies SequencedAnnotation<SeeAnnotation,Annotated> {
+    string => ", ".join(programElements.map((element) => "[[``element.qualifiedName``]]"));
+}
 
 "Annotation to specify references to other program elements
  related to the annotated API."
@@ -165,11 +168,14 @@ shared annotation SeeAnnotation see(
         => SeeAnnotation(*programElements);
 
 "The annotation class for the [[by]] annotation."
+docSection("By", 50)
 shared final annotation class AuthorsAnnotation(
     "The authors, in Markdown syntax, of the annotated 
      program element"
     shared String* authors)
-        satisfies OptionalAnnotation<AuthorsAnnotation,Annotated> {}
+        satisfies OptionalAnnotation<AuthorsAnnotation,Annotated> {
+    string => ", ".join(authors);
+}
 
 "Annotation to document the authors of an API."
 shared annotation AuthorsAnnotation by(
@@ -179,6 +185,7 @@ shared annotation AuthorsAnnotation by(
         => AuthorsAnnotation(*authors);
 
 "The annotation class for the [[throws]] annotation."
+docSection("Throws", 25)
 shared final annotation class ThrownExceptionAnnotation(
     "The [[Exception]] type that this thrown."
     shared Declaration type,
@@ -186,7 +193,9 @@ shared final annotation class ThrownExceptionAnnotation(
      that cause this exception to be thrown."
     shared String when)
         satisfies SequencedAnnotation<ThrownExceptionAnnotation,
-                FunctionOrValueDeclaration|ClassDeclaration|ConstructorDeclaration> {}
+                FunctionOrValueDeclaration|ClassDeclaration|ConstructorDeclaration> {
+    string => when == "" then "[[``type.qualifiedName``]]" else "[[``type.qualifiedName``]]  \n``when``";
+}
 
 "Annotation to document the exception types thrown by a 
  function, value, class, or constructor."
@@ -199,6 +208,7 @@ shared annotation ThrownExceptionAnnotation throws(
         => ThrownExceptionAnnotation(type, when);
 
 "The annotation class for the [[deprecated]] annotation."
+docSection("Deprecated", -1)
 shared final annotation class DeprecationAnnotation(
     "A description, in Markdown syntax, of why the program 
      element is deprecated, and of what alternatives are 
@@ -211,6 +221,7 @@ shared final annotation class DeprecationAnnotation(
      available, or `null`."
     shared String? reason
             => !description.empty then description;
+    string => description;
 }
 
 "Annotation to mark program elements which should not be 
@@ -235,10 +246,13 @@ shared annotation TagsAnnotation tagged(
         => TagsAnnotation(*tags);
 
 "The annotation class for the [[license]] annotation."
+docSection("License", 100)
 shared final annotation class LicenseAnnotation(
     "The name, text, or URL of the license."
     shared String description)
-        satisfies OptionalAnnotation<LicenseAnnotation,Module> {}
+        satisfies OptionalAnnotation<LicenseAnnotation,Module> {
+    string => description;
+}
 
 "Annotation to specify the URL of the license of a module or 
  package."
@@ -301,4 +315,34 @@ shared final annotation class SerializableAnnotation()
  instances of non-serializable classes."
 shared annotation SerializableAnnotation serializable() 
         => SerializableAnnotation();
+
+"The annotation class for the [[docSection]] annotation."
+shared final annotation class DocSectionAnnotation(
+    "The name of the section."
+    shared String section,
+    "The rank of the section."
+    shared Integer rank)
+        satisfies OptionalAnnotation<DocSectionAnnotation,ClassDeclaration> {}
+
+"Annotation to specify that an annotation provides additional documentation.
+ 
+ The documentation of an element annotated with an annotation whose class is annotated with this annotation
+ will receive an additional section with [[section]] as the title (plain text).
+ The content will be
+ 
+ - the [[`string`|Object.string]] of the annotation in the case of an [[OptionalAnnotation]], and
+ - a list containing the [[`string`s|Object.string]] of each annotation in the case of a [[SequencedAnnotation]].
+ 
+ Sections are ordered by their [[rank]], with the higher ranks towards the bottom of the list.
+ The [[regular documentation|doc]] has an implicit rank of 0,
+ so negative ranks (which will place the section above the regular documentation)
+ should be used __very__ sparingly.
+ Most language annotations are ranked between 1 and 100."
+see (`function see`, `function by`, `function throws`)
+shared annotation DocSectionAnnotation docSection(
+    "The name of the section (plain text)."
+    String section,
+    "The rank of the section (higher means section will appear further down)."
+    Integer rank)
+        => DocSectionAnnotation(section, rank);
 
